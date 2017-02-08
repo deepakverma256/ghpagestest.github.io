@@ -265,6 +265,7 @@ Full-Width Styles
   background-size: 25px;
   font-weight: 700;
   border: none;
+  box-shadow: inset 3px 1px 20px 0px #0a273e;
 }
 
 #api_doc:hover {
@@ -323,7 +324,7 @@ header {
 #main_content.inner {
   background-color: #fff;
   padding: 70px 100px;
-  box-shadow: 0 0 3px #ebebeb;
+  box-shadow: 0 0 18px 6px #134c79;
   -webkit-box-shadow: 0 0 5px rgba(11, 44, 70);
   -moz-box-shadow: 0 0 5px rgba(11, 44, 70);
   -o-box-shadow: 0 0 5px rgba(11, 44, 70);
