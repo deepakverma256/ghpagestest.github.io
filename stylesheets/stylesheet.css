@@ -18,7 +18,7 @@ Theme Styles
 
 body {
   color:#373737;
-  background: #212121;
+  background: #185a8f;
   font-size: 18px;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -102,7 +102,15 @@ strong {
   font-weight: bold;
 }
 
-img {
+img.logo{
+  position: relative;
+  margin: 0 auto;
+  max-width: 90px;
+  padding: 5px;
+  margin: 10px 0 10px 0;
+}
+
+img.inbody {
   position: relative;
   margin: 0 auto;
   max-width: 739px;
@@ -116,7 +124,7 @@ img {
   -ms-box-shadow: 0 0 5px #ebebeb;
 }
 
-p img {
+p img{
   display: inline;
   margin: 0;
   padding: 0;
@@ -233,7 +241,7 @@ Full-Width Styles
   z-index: 10;
   padding: 10px 20px 10px 50px;
   color: #fff;
-  background: url('../images/blacktocat.svg') #0090ff no-repeat 8% 50%;
+  background: url('../images/blacktocat.svg') #F16022 no-repeat 8% 50%;
   background-size: 25px;
   font-weight: 700;
   border: none;
@@ -248,7 +256,7 @@ header {
 }
 
 #header_wrap {
-  background: #212121;
+  background: #185a8f;
 }
 
 #header_wrap .inner {
@@ -301,7 +309,7 @@ header {
 }
 
 #footer_wrap {
-  background: #212121;
+  background: #185a8f;
 }
 
 /*******************************************************************************
