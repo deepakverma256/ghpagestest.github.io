@@ -108,6 +108,9 @@ img.logo{
   max-width: 90px;
   padding: 5px;
   margin: 10px 0 10px 0;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }
 
 img.inbody {
@@ -268,6 +271,8 @@ header {
   color: #fff;
   font-size: 54px;
   font-weight: 700;
+  left: 50%;
+  transform: translate(32%, -124%)
 }
 
 #project_tagline {
