@@ -136,7 +136,7 @@ p img{
 pre, code {
   width: 100%;
   color: #fff;
-  background-color: #222;
+  background-color: #0e314d;
 
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 14px;
@@ -203,13 +203,13 @@ table {
 
 th {
   padding: 10px;
-  background: #222;
+  background: #0e314d;
   color: #fff;
  }
 
 td {
   padding: 10px;
-  border: 1px solid #222;
+  border: 1px solid #0e314d;
  }
 
 form {
