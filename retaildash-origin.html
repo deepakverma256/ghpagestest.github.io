@@ -1,0 +1,2898 @@
+<!DOCTYPE HTML><html><head><title>RetailDash API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 3.0.1"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+
+        $('[data-toggle]').click(function() {
+          var selector = $(this).data('target') + ' pre code';
+          $(selector).each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+
+        // open modal on hashes like #_action_get
+        $(window).bind('hashchange', function(e) {
+          var anchor_id = document.location.hash.substr(1); //strip #
+          var element = $('#' + anchor_id);
+
+          // do we have such element + is it a modal?  --> show it
+          if (element.length && element.hasClass('modal')) {
+            element.modal('show');
+          }
+        });
+
+        // execute hashchange on first page load
+        $(window).trigger('hashchange');
+
+        // remove url fragment on modal hide
+        $('.modal').on('hidden.bs.modal', function() {
+          try {
+            if (history && history.replaceState) {
+                history.replaceState({}, '', '#');
+            }
+          } catch(e) {}
+        });
+      });
+    </script><style>
+      .hljs {
+        background: transparent;
+      }
+      .parent {
+        color: #999;
+      }
+      .list-group-item > .badge {
+        float: none;
+        margin-right: 6px;
+      }
+      .panel-title > .methods {
+        float: right;
+      }
+      .badge {
+        border-radius: 0;
+        text-transform: uppercase;
+        width: 70px;
+        font-weight: normal;
+        color: #f3f3f6;
+        line-height: normal;
+      }
+      .badge_get {
+        background-color: #63a8e2;
+      }
+      .badge_post {
+        background-color: #6cbd7d;
+      }
+      .badge_put {
+        background-color: #22bac4;
+      }
+      .badge_delete {
+        background-color: #d26460;
+      }
+      .badge_patch {
+        background-color: #ccc444;
+      }
+      .list-group, .panel-group {
+        margin-bottom: 0;
+      }
+      .panel-group .panel+.panel-white {
+        margin-top: 0;
+      }
+      .panel-group .panel-white {
+        border-bottom: 1px solid #F5F5F5;
+        border-radius: 0;
+      }
+      .panel-white:last-child {
+        border-bottom-color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .panel-white .panel-heading {
+        background: white;
+      }
+      .tab-pane ul {
+        padding-left: 2em;
+      }
+      .tab-pane h1 {
+        font-size: 1.3em;
+      }
+      .tab-pane h2 {
+        font-size: 1.2em;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab-pane h3 {
+        font-size: 1.1em;
+      }
+      .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #sidebar {
+        margin-top: 30px;
+        padding-right: 5px;
+        overflow: auto;
+        height: 90%;
+      }
+      .top-resource-description {
+        border-bottom: 1px solid #ddd;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description {
+        border-bottom: 1px solid #fcfcfc;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description p:last-child {
+        margin: 0;
+      }
+      .list-group .badge {
+        float: left;
+      }
+      .method_description {
+        margin-left: 85px;
+      }
+      .method_description p:last-child {
+        margin: 0;
+      }
+      .list-group-item {
+        cursor: pointer;
+      }
+      .list-group-item:hover {
+        background-color: #f5f5f5;
+      }
+
+      pre code {
+        overflow: auto;
+        word-wrap: normal;
+        white-space: pre;
+      }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>RetailDash API documentation <small>version 0.1</small></h1><p>http://52.9.31.59/api</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_retailerShippingOptions" class="panel-title">/v1/retailerShippingOptions</h3></div><div class="panel-body"><div class="top-resource-description"><p>retailer shipping option data including retailer name and retaildash shipping option name</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retailerShippingOptions"><span class="parent"></span>/v1/retailerShippingOptions</a> <span class="methods"><a href="#v1_retailerShippingOptions_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_retailerShippingOptions" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_retailerShippingOptions_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List of retailer shipping options</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailerShippingOptions_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/v1/retailerShippingOptions</h4></div><div class="modal-body"><div class="alert alert-info"><p>List of retailer shipping options</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailerShippingOptions_get_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailerShippingOptions_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailerShippingOptions_get_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_retailerShippingOptions_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retailerShippingOption/retailerShippingOptions.schema",
+  "description": "Retailer shipping option details",
+  "properties": {
+   "orders": {
+      "description": "Collection of Retailer Shipping options data",
+      "type": "array",
+      "items": [
+        {
+          "type": { "$ref": "definitions.json#/retailerShippingOption" }
+        }
+      ]
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "retailerShippingOptions": [
+    {
+      "id": 4,
+      "retailerId": 16,
+      "retaildashShippingOptionId": 1,
+      "name": "Normal",
+      "retailerName": "dafity",
+      "retaildashShippingOptionName": "Normal"
+    },
+    {
+      "id": 5,
+      "retailerId": 17,
+      "retaildashShippingOptionId": 2,
+      "name": "Express",
+      "retailerName": "sentaro",
+      "retaildashShippingOptionName": "Express"
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_retailerShippingOption" class="panel-title">/v1/retailerShippingOption</h3></div><div class="panel-body"><div class="top-resource-description"><p>retailer shipping option</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retailerShippingOption"><span class="parent"></span>/v1/retailerShippingOption</a> <span class="methods"><a href="#v1_retailerShippingOption_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_v1_retailerShippingOption" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_retailerShippingOption_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>creating retailer shipping option</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailerShippingOption_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/v1/retailerShippingOption</h4></div><div class="modal-body"><div class="alert alert-info"><p>creating retailer shipping option</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailerShippingOption_post_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailerShippingOption_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailerShippingOption_post_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retailerShippingOption/retailerShippingOptionCreate.schema",
+  "description": "create Retailer shipping option",
+  "properties": {
+    "retailerId": {
+      "type": "int",
+      "description": "Retailer Identifier",
+      "required": "true"
+    },
+    "retaildashShippingOptionId": {
+      "type": "int",
+      "description": "Retaildash shipping option Identifier",
+      "required": "true"
+    },
+    "name": {
+      "type": "string",
+      "description": "Retailer shipping option Name",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "retailerId": 33,
+  "retaildashShippingOptionId": 1,
+  "name": "test"
+}</code></pre></div><div class="tab-pane" id="v1_retailerShippingOption_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record saved successfully",
+  "success": "true"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 102,
+  "description": "Record not saved"
+}
+{
+  "code": 103,
+  "description": "Retailer shipping option is already available"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}
+{
+  "code": 106,
+  "description": "retailerId is not recognized"
+}
+{
+  "code": 108,
+  "description": "retailerShippingOptionID is not recognized"
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retailerShippingOption__id_"><span class="parent">/v1/retailerShippingOption</span>/{id}</a> <span class="methods"><a href="#v1_retailerShippingOption__id__get"><span class="badge badge_get">get</span></a> <a href="#v1_retailerShippingOption__id__put"><span class="badge badge_put">put</span></a> <a href="#v1_retailerShippingOption__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_v1_retailerShippingOption__id_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>A specific note, identified by its id</p></div><div class="list-group"><div onclick="window.location.href = '#v1_retailerShippingOption__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>getting retailer shipping option data for specific retailer shipping option</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#v1_retailerShippingOption__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>update retailer shipping option data for specific retailer shipping option</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#v1_retailerShippingOption__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>delete retailer shipping option for specific retailer shipping option</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailerShippingOption__id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/v1/retailerShippingOption</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>getting retailer shipping option data for specific retailer shipping option</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailerShippingOption__id__get_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailerShippingOption__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailerShippingOption__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_retailerShippingOption__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retailerShippingOption/retailerShippingOption.schema",
+  "description": "Retailer shipping option details",
+  "properties": {
+    "id": {
+      "type": "int",
+      "description": "Identifier"
+    },
+    "retailerId": {
+      "type": "int",
+      "description": "Retailer Identifier"
+    },
+    "retaildashShippingOptionId": {
+      "type": "int",
+      "description": "Retaildash shipping option Identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Retailer shipping option Name"
+    },
+    "retailerName": {
+      "type": "string",
+      "description": "Retailer Name"
+    },
+    "retaildashShippingOptionName": {
+      "type": "string",
+      "description": "Retaildash shipping option Name"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "retailerShippingOptions": {
+    "id": 4,
+    "retailerId": 16,
+    "retaildashShippingOptionId": 1,
+    "name": "Normal",
+    "retailerName": "dafity",
+    "retaildashShippingOptionName": "Normal"
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailerShippingOption__id__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/v1/retailerShippingOption</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>update retailer shipping option data for specific retailer shipping option</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailerShippingOption__id__put_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailerShippingOption__id__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailerShippingOption__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retailerShippingOption/retailerShippingOptionUpdate.schema",
+  "description": "update Retailer shipping option",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Retailer shipping option Name",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "name": "Express"
+}</code></pre></div><div class="tab-pane" id="v1_retailerShippingOption__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record updated successfully",
+  "success": "true"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}
+{
+  "code": 103,
+  "description": "Record not updated"
+}
+{
+  "code": 103,
+  "description": "Retailer shipping option is already available"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailerShippingOption__id__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/v1/retailerShippingOption</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>delete retailer shipping option for specific retailer shipping option</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailerShippingOption__id__delete_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailerShippingOption__id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailerShippingOption__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_retailerShippingOption__id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record deleted successfully",
+  "success":"true"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_retaildashShippingOptions" class="panel-title">/v1/retaildashShippingOptions</h3></div><div class="panel-body"><div class="top-resource-description"><p>retaildash shipping option data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retaildashShippingOptions"><span class="parent"></span>/v1/retaildashShippingOptions</a> <span class="methods"><a href="#v1_retaildashShippingOptions_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_retaildashShippingOptions" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_retaildashShippingOptions_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List of retaildash shipping options</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retaildashShippingOptions_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/v1/retaildashShippingOptions</h4></div><div class="modal-body"><div class="alert alert-info"><p>List of retaildash shipping options</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retaildashShippingOptions_get_request" data-toggle="tab">Request</a></li><li><a href="#v1_retaildashShippingOptions_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retaildashShippingOptions_get_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_retaildashShippingOptions_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retaildashShippingOption/retaildashShippingOptions.schema",
+  "description": "Retaildash shipping option details",
+  "properties": {
+    "orders": {
+      "description": "Collection of Retaildash Shipping options data",
+      "type": "array",
+      "items": [
+        {
+          "type": { "$ref": "definitions.json#/retaildashShippingOption" }
+        }
+      ]
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "retaildashShippingOptions": [
+    {
+      "id": 1,
+      "name": "normal"
+    },
+    {
+      "id": 4,
+      "name": "express"
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_retaildashShippingOption" class="panel-title">/v1/retaildashShippingOption</h3></div><div class="panel-body"><div class="top-resource-description"><p>retaildash shipping option</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retaildashShippingOption"><span class="parent"></span>/v1/retaildashShippingOption</a> <span class="methods"><a href="#v1_retaildashShippingOption_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_v1_retaildashShippingOption" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_retaildashShippingOption_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>create retaildash shipping option data</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retaildashShippingOption_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/v1/retaildashShippingOption</h4></div><div class="modal-body"><div class="alert alert-info"><p>create retaildash shipping option data</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retaildashShippingOption_post_request" data-toggle="tab">Request</a></li><li><a href="#v1_retaildashShippingOption_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retaildashShippingOption_post_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retaildashShippingOption/retaildashShippingOptionCreate.schema",
+  "description": "create Retaildash shipping option",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Retaildash shipping option Name",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "name": "Normal"
+}</code></pre></div><div class="tab-pane" id="v1_retaildashShippingOption_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/successType.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Success code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Success description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 201,
+  "description": "Record saved successfully"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 102,
+  "description": "Record not saved"
+}
+{
+  "code": 103,
+  "description": "Retaildash shipping option is already available"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retaildashShippingOption__id_"><span class="parent">/v1/retaildashShippingOption</span>/{id}</a> <span class="methods"><a href="#v1_retaildashShippingOption__id__get"><span class="badge badge_get">get</span></a> <a href="#v1_retaildashShippingOption__id__put"><span class="badge badge_put">put</span></a> <a href="#v1_retaildashShippingOption__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_v1_retaildashShippingOption__id_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>A specific note, identified by its id</p></div><div class="list-group"><div onclick="window.location.href = '#v1_retaildashShippingOption__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>getting retaildash shipping option data for specific retaildash shipping option</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#v1_retaildashShippingOption__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>update retaildash shipping option data for specific retaildash shipping option</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#v1_retaildashShippingOption__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>delete retaildash shipping option data for specific retaildash shipping option</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retaildashShippingOption__id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/v1/retaildashShippingOption</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>getting retaildash shipping option data for specific retaildash shipping option</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retaildashShippingOption__id__get_request" data-toggle="tab">Request</a></li><li><a href="#v1_retaildashShippingOption__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retaildashShippingOption__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>4</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_retaildashShippingOption__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retaildashShippingOption/retaildashShippingOptions.schema",
+  "description": "Retaildash shipping option details",
+  "properties": {
+    "id": {
+      "type": "int",
+      "description": "Identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Retaildash shipping option Name"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "retaildashShippingOption ": {
+    "id": 1,
+    "name": "normal"
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retaildashShippingOption__id__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/v1/retaildashShippingOption</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>update retaildash shipping option data for specific retaildash shipping option</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retaildashShippingOption__id__put_request" data-toggle="tab">Request</a></li><li><a href="#v1_retaildashShippingOption__id__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retaildashShippingOption__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>4</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retaildashShippingOption/retaildashShippingOptionUpdate.schema",
+  "description": "update Retaildash shipping option",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Retaildash shipping option Name",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "name": "Normal"
+}</code></pre></div><div class="tab-pane" id="v1_retaildashShippingOption__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/successType.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Success code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Success description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 202,
+  "description": "Record updated successfully"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}
+{
+  "code": 103,
+  "description": "Retaildash shipping option is already available"
+}
+{
+  "code": 103,
+  "description": "Record not updated"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retaildashShippingOption__id__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/v1/retaildashShippingOption</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>delete retaildash shipping option data for specific retaildash shipping option</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retaildashShippingOption__id__delete_request" data-toggle="tab">Request</a></li><li><a href="#v1_retaildashShippingOption__id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retaildashShippingOption__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>4</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_retaildashShippingOption__id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record deleted successfully",
+  "success":"true"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_retailerProductConfigurations" class="panel-title">/v1/retailerProductConfigurations</h3></div><div class="panel-body"><div class="top-resource-description"><p>retailer product configuration data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retailerProductConfigurations"><span class="parent"></span>/v1/retailerProductConfigurations</a> <span class="methods"><a href="#v1_retailerProductConfigurations_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_retailerProductConfigurations" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_retailerProductConfigurations_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List of retailer product configuration</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailerProductConfigurations_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/v1/retailerProductConfigurations</h4></div><div class="modal-body"><div class="alert alert-info"><p>List of retailer product configuration</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailerProductConfigurations_get_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailerProductConfigurations_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailerProductConfigurations_get_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_retailerProductConfigurations_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retailerProductConfiguration/retailerProductConfigurations.schema",
+  "description": "Retailer product configuration details",
+  "properties": {
+    "orders": {
+      "description": "Collection of Retailer product configuration data",
+      "type": "array",
+      "items": [
+        {
+          "type": { "$ref": "definitions.json#/retaierProductConfiguration" }
+        }
+      ]
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "retailerProductConfigurations": [
+    {
+      "id": 1801,
+      "keyword": "centauroZIP",
+      "description": "Adidas Performance",
+      "url": "http://esportes.centauro.com.br/search?w=Tênis+Rainha+Circuit",
+      "urlType": "SRCH",
+      "active": true,
+      "maxNumberOfRecords": 2,
+      "referenceCode": "A12345",
+      "createdAt": "2016-05-17T18:48:35.558936Z",
+      "updatedAt": "2016-05-17T18:48:35.558936Z",
+      "retailerId": 18,
+      "retailerName": "centauro",
+      "spiderName": "centauro",
+      "colorVariant": false
+    },
+    {
+      "id": 1802,
+      "keyword": "dafiti New",
+      "description": "ecommerce",
+      "url": "http://dafiti.com",
+      "urlType": "SRCH",
+      "active": false,
+      "maxNumberOfRecords": 1,
+      "referenceCode": "A12346",
+      "createdAt": "2016-05-17T18:49:35.558936Z",
+      "updatedAt": "2016-05-17T18:49:35.558936Z",
+      "retailerId": 19,
+      "retailerName": "dafiti",
+      "spiderName": "dafiti",
+      "colorVariant": false
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_retailerProductConfiguration" class="panel-title">/v1/retailerProductConfiguration</h3></div><div class="panel-body"><div class="top-resource-description"><p>Retailer product configuration</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retailerProductConfiguration"><span class="parent"></span>/v1/retailerProductConfiguration</a> <span class="methods"><a href="#v1_retailerProductConfiguration_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_v1_retailerProductConfiguration" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_retailerProductConfiguration_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create retailer product configuration</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailerProductConfiguration_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/v1/retailerProductConfiguration</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create retailer product configuration</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailerProductConfiguration_post_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailerProductConfiguration_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailerProductConfiguration_post_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retailerProductConfiguration/retailerProductConfigurationCreate.schema",
+  "description": "Retailer product configuration create",
+  "properties": {
+    "keyword": {
+      "type": "string",
+      "description": "Retailer product configuration watch word",
+      "required": "false"
+    },
+    "description": {
+      "type": "string",
+      "description": "Retailer product configuration explanation",
+      "required": "false"
+    },
+    "url": {
+      "type": "string",
+      "description": "Retailer product configuration URL",
+      "required": "true"
+    },
+    "urlType": {
+      "type": "string",
+      "description": "Retailer product configuration Type of URL",
+      "required": "true"
+    },
+    "active": {
+      "type": "bool",
+      "description": "Retailer product configuration active position or not",
+      "required": "false"
+    },
+    "maxNumberOfRecords": {
+      "type": "int",
+      "description": "The number of products for the given SRCH/CDP URL",
+      "required":"false"
+    },
+    "referenceCode": {
+      "type": "string",
+      "description": "Reference code",
+      "required": "false"
+    },
+    "retailerId": {
+      "type": "int",
+      "description": "Retailer Identifier",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "keyword": "centauroZIP",
+  "description": "Adidas Performance",
+  "url": "http://esportes.centauro.com.br/search?w=Tênis+Rainha+Circuit",
+  "urlType": "SRCH",
+  "active": true,
+  "maxNumberOfRecords": 2,
+  "referenceCode": "123654",
+  "retailerId": 33
+}</code></pre></div><div class="tab-pane" id="v1_retailerProductConfiguration_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record saved successfully",
+  "success": "true"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 102,
+  "description": "Record not saved"
+}
+{
+  "code": 103,
+  "description": "URL is already available"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}
+{
+  "code": 106,
+  "description": "retailerId is not recognized"
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retailerProductConfiguration__id_"><span class="parent">/v1/retailerProductConfiguration</span>/{id}</a> <span class="methods"><a href="#v1_retailerProductConfiguration__id__get"><span class="badge badge_get">get</span></a> <a href="#v1_retailerProductConfiguration__id__put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_v1_retailerProductConfiguration__id_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>A specific note, identified by its id</p></div><div class="list-group"><div onclick="window.location.href = '#v1_retailerProductConfiguration__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>getting retailer product configuration data for specific retailer product configuration</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#v1_retailerProductConfiguration__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update retailer product configuration data for specific retailer product configuration</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailerProductConfiguration__id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/v1/retailerProductConfiguration</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>getting retailer product configuration data for specific retailer product configuration</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailerProductConfiguration__id__get_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailerProductConfiguration__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailerProductConfiguration__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>2359</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_retailerProductConfiguration__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retailerProductConfiguration/retailerProductConfigurations.schema",
+  "description": "Retailer product configuration details",
+  "properties": {
+    "id": {
+      "type": "int",
+      "description": "Identifier"
+    },
+    "keyword": {
+      "type": "string",
+      "description": "Retailer product configuration watch word"
+    },
+    "description": {
+      "type": "string",
+      "description": "Retailer product configuration explanation"
+    },
+    "url": {
+      "type": "string",
+      "description": "Retailer product configuration URL"
+    },
+    "urlType": {
+      "type": "string",
+      "description": "Retailer product configuration Type of URL"
+    },
+    "active": {
+      "type": "bool",
+      "description": "Retailer product configuration enable or disabled"
+    },
+    "maxNumberOfRecords": {
+      "type": "int",
+      "description": "The number of products for the given SRCH/CDP URL"
+    },
+    "referenceCode": {
+      "type": "string",
+      "description": "reference code"
+    },
+    "createdAt": {
+      "type": "time.Time",
+      "description": "Retailer product configuration created time"
+    },
+    "updatedAt": {
+      "type": "time.Time",
+      "description": "Retailer product configuration updated time"
+    },
+    "retailerId": {
+      "type": "int",
+      "description": "Retailer Identifier"
+    },
+    "retailerName": {
+      "type": "string",
+      "description": "Retailer Name"
+    },
+    "spiderName": {
+      "type": "string",
+      "description": "Spider Name"
+    },
+    "colorVariant": {
+      "type": "bool",
+      "description": "color variant"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "retailerProductConfiguration": {
+    "id": 1801,
+    "keyword": "centauroZIP",
+    "description": "Adidas Performance",
+    "url": "http://esportes.centauro.com.br/search?w=Tênis+Rainha+Circuit",
+    "urlType": "SRCH",
+    "active": true,
+    "maxNumberOfRecords": 2,
+    "referenceCode": "A12345",
+    "createdAt": "2016-05-17T18:48:35.558936Z",
+    "updatedAt": "2016-05-17T18:48:35.558936Z",
+    "retailerId": 18,
+    "retailerName": "centauro",
+    "spiderName": "centauro",
+    "colorVariant": false
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailerProductConfiguration__id__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/v1/retailerProductConfiguration</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update retailer product configuration data for specific retailer product configuration</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailerProductConfiguration__id__put_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailerProductConfiguration__id__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailerProductConfiguration__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>2359</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retailerProductConfiguration/retailerProductConfigurationUpdate.schema",
+  "description": "Retailer product configuration create",
+  "properties": {
+    "maxNumberOfRecords": {
+      "type": "int",
+      "description": "The number of products for the given SRCH/CDP URL",
+      "required":"false"
+    },
+    "active": {
+      "type": "bool",
+      "description": "Retailer product configuration active position or not",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "maxNumberOfRecords": 2,
+  "active": false
+}</code></pre></div><div class="tab-pane" id="v1_retailerProductConfiguration__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record updated successfully",
+  "success": "true"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_retailers" class="panel-title">/v1/retailers</h3></div><div class="panel-body"><div class="top-resource-description"><p>Retailers&#39; data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retailers"><span class="parent"></span>/v1/retailers</a> <span class="methods"><a href="#v1_retailers_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_retailers" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_retailers_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retailer data for all retailers</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailers_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/v1/retailers</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retailer data for all retailers</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailers_get_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailers_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailers_get_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_retailers_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retailers/retailers.schema",
+  "description": "Schema for retailer details",
+  "properties": {
+    "orders": {
+      "description": "Collection of Retailers data",
+      "type": "array",
+      "items": [
+        {
+          "type": { "$ref": "definitions.json#/retailer" }
+        }
+      ]
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "retailers ": [
+    {
+      "id": 12,
+      "name": "centauro",
+      "baseUrl": "http://www.centauro.com.br/",
+      "currency": "BRL",
+      "products": [
+        {
+          "id": 1138,
+          "description": "centauro Sold out",
+          "url": "http://www.centauro.com.br/tenis-rainha-energy-nuclear-masculino-4133193-839096.html?cor=03",
+          "urlType": "PDP",
+          "active": "false"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "id": 29,
+          "description": "Normal",
+          "standardizedDescription": "normal",
+          "standardizedId": "1"
+        }
+      ],
+      "crawlDays": "Monday, Wednesday",
+      "crawlTime": "10:11, 10:11",
+      "active": true
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_retailer" class="panel-title">/v1/retailer</h3></div><div class="panel-body"><div class="top-resource-description"><p>Retailer data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_retailer__id_"><span class="parent">/v1/retailer</span>/{id}</a> <span class="methods"><a href="#v1_retailer__id__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_retailer__id_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>A specific note, identified by its id</p></div><div class="list-group"><div onclick="window.location.href = '#v1_retailer__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retailer data for a specific retailer</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_retailer__id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/v1/retailer</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retailer data for a specific retailer</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_retailer__id__get_request" data-toggle="tab">Request</a></li><li><a href="#v1_retailer__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_retailer__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>18</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_retailer__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/retailers/retailers.schema",
+  "description": "Schema for retailer details",
+  "properties": {
+    "id": {
+      "type": "int",
+      "description": "Identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Retailer Name"
+    },
+    "baseUrl": {
+      "type": "string",
+      "description": "Retailer base URL"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Retailer Currency Type"
+    },
+    "products": {
+      "description": "Collection of products",
+      "type": "array",
+      "items": [
+        {
+          "id": {
+            "type": "int",
+            "description": "Identifier"
+          },
+          "description": {
+            "type": "string",
+            "description": "Retailer product configuration explanation"
+          },
+          "url": {
+            "type": "string",
+            "description": "Retailer product configuration URL"
+          },
+          "urlType": {
+            "type": "string",
+            "description": "Retailer product configuration Type of URL"
+          },
+          "active": {
+            "type": "bool",
+            "description": "Retailer product configuration active position or not"
+          }
+        }
+      ]
+    },
+    "shippingOptions": {
+      "description": "Collection of shipping options",
+      "type": "array",
+      "items": [
+        {
+          "id": {
+            "type": "int",
+            "description": "Identifier"
+          },
+          "description": {
+            "type": "string",
+            "description": "shipping option description"
+          },
+          "standardizedDescription": {
+            "type": "string",
+            "description": "description type"
+          },
+          "standardizedId": {
+            "type": "string",
+            "description": "detaildash Identifier"
+          }
+        }
+      ]
+    },
+    "crawlDays": {
+      "type": "string",
+      "description": "crawl days"
+    },
+    "crawlTime": {
+      "type": "string",
+      "description": "crawl time"
+    },
+    "active": {
+      "type": "bool",
+      "description": "active position or not"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "retailer ": {
+    "id": 12,
+    "name": "centauro",
+    "baseUrl": "http://www.centauro.com.br/",
+    "currency": "BRL",
+    "products": [
+      {
+        "id": 1138,
+        "description": "centauro Sold out",
+        "url": "http://www.centauro.com.br/tenis-rainha-energy-nuclear-masculino-4133193-839096.html?cor=03",
+        "urlType": "PDP",
+        "active": "false"
+      }
+    ],
+    "shippingOptions": [
+      {
+        "id": 26,
+        "description": "Normal",
+        "standardizedDescription": "normal",
+        "standardizedId": "1"
+      }
+    ],
+    "crawlDays": "Monday, Wednesday",
+    "crawlTime": "10:11, 10:11",
+    "active": true
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_shippingAddresses" class="panel-title">/v1/shippingAddresses</h3></div><div class="panel-body"><div class="top-resource-description"><p>Shipping addresses data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_shippingAddresses"><span class="parent"></span>/v1/shippingAddresses</a> <span class="methods"><a href="#v1_shippingAddresses_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_shippingAddresses" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_shippingAddresses_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>shipping address data for all shipping addresses</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_shippingAddresses_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/v1/shippingAddresses</h4></div><div class="modal-body"><div class="alert alert-info"><p>shipping address data for all shipping addresses</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_shippingAddresses_get_request" data-toggle="tab">Request</a></li><li><a href="#v1_shippingAddresses_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_shippingAddresses_get_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_shippingAddresses_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/shippingAddress/shippingAddresses.schema",
+  "description": "Schema for Shipping address details",
+  "properties": {
+    "orders": {
+      "description": "Collection of shipping addresses data",
+      "type": "array",
+      "items": [
+        {
+          "type": { "$ref": "definitions.json#/shippingAddress" }
+        }
+      ]
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "shippingAddresses": [
+    {
+      "id": 1,
+      "address1": "Praça  da Sé",
+      "address2": "1 Sé",
+      "city": "São Paulo",
+      "state": "São Paulo - SP",
+      "country": "BRA",
+      "zipCode": "01001000",
+      "retailerId": 33
+    },
+    {
+      "id": 2,
+      "address1": "Praça  da Sé",
+      "address2": "1 Sé",
+      "city": "São Paulo",
+      "state": "São Paulo - SP",
+      "country": "BRA",
+      "zipCode": "01001001",
+      "retailerId": 1
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_shippingAddress" class="panel-title">/v1/shippingAddress</h3></div><div class="panel-body"><div class="top-resource-description"><p>Shipping address data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_shippingAddress"><span class="parent"></span>/v1/shippingAddress</a> <span class="methods"><a href="#v1_shippingAddress_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_v1_shippingAddress" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_shippingAddress_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>create shipping address</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_shippingAddress_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/v1/shippingAddress</h4></div><div class="modal-body"><div class="alert alert-info"><p>create shipping address</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_shippingAddress_post_request" data-toggle="tab">Request</a></li><li><a href="#v1_shippingAddress_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_shippingAddress_post_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/shippingAddress/shippingAddressCreate.schema",
+  "description": "Schema for Shipping address create",
+  "properties": {
+    "address1": {
+      "type": "string",
+      "description": "Shipping address",
+      "required": "true"
+    },
+    "address2": {
+      "type": "string",
+      "description": "Shipping address",
+      "required": "true"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name",
+      "required": "true"
+    },
+    "state": {
+      "type": "string",
+      "description": "State name",
+      "required": "true"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country name",
+      "required": "true"
+    },
+    "zipCode": {
+      "type": "string",
+      "description": "Area zipCode",
+      "required": "true"
+    },
+    "retailerId": {
+      "type": "int",
+      "description": "Retailer Identifier",
+      "required": "false"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "address1": "Praça  da Sé",
+  "address2": "1 Sé",
+  "city": "São Paulo",
+  "state": "São Paulo - SP",
+  "country": "BRA",
+  "zipCode": "01001000",
+  "retailerId": 1
+}</code></pre></div><div class="tab-pane" id="v1_shippingAddress_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record saved successfully",
+  "success": "true"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 102,
+  "description": "Record not saved"
+}
+{
+  "code": 103,
+  "description": "ZipCode is already available"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_shippingAddress__id_"><span class="parent">/v1/shippingAddress</span>/{id}</a> <span class="methods"><a href="#v1_shippingAddress__id__get"><span class="badge badge_get">get</span></a> <a href="#v1_shippingAddress__id__put"><span class="badge badge_put">put</span></a> <a href="#v1_shippingAddress__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_v1_shippingAddress__id_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>A specific note, identified by its id</p></div><div class="list-group"><div onclick="window.location.href = '#v1_shippingAddress__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>shipping address data for a specific shipping address</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#v1_shippingAddress__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>update shipping address data for a specific shipping address</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#v1_shippingAddress__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>delete shipping address data for a specific shipping address</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_shippingAddress__id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/v1/shippingAddress</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>shipping address data for a specific shipping address</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_shippingAddress__id__get_request" data-toggle="tab">Request</a></li><li><a href="#v1_shippingAddress__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_shippingAddress__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>58</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_shippingAddress__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/shippingAddress/shippingAddresses.schema",
+  "description": "Schema for Shipping address details",
+  "properties": {
+    "id": {
+      "type": "int",
+      "description": "Identifier"
+    },
+    "address1": {
+      "type": "string",
+      "description": "Shipping address"
+    },
+    "address2": {
+      "type": "string",
+      "description": "Shipping address"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name"
+    },
+    "state": {
+      "type": "string",
+      "description": "State name"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country name"
+    },
+    "zipCode": {
+      "type": "string",
+      "description": "Area zipCode"
+    },
+    "retailerId": {
+      "type": "int",
+      "description": "Retailer Identifier"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "shippingAddress": {
+    "id": 1,
+    "address1": "Praça  da Sé",
+    "address2": "1 Sé",
+    "city": "São Paulo",
+    "state": "São Paulo - SP",
+    "country": "BRA",
+    "zipCode": "01001000",
+    "retailerId": 1
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_shippingAddress__id__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/v1/shippingAddress</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>update shipping address data for a specific shipping address</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_shippingAddress__id__put_request" data-toggle="tab">Request</a></li><li><a href="#v1_shippingAddress__id__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_shippingAddress__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>58</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/shippingAddress/shippingAddressUpdate.schema",
+  "description": "Schema for Shipping address create",
+  "properties": {
+    "address1": {
+      "type": "string",
+      "description": "Shipping address",
+      "required": "true"
+    },
+    "address2": {
+      "type": "string",
+      "description": "Shipping address",
+      "required": "true"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name",
+      "required": "true"
+    },
+    "state": {
+      "type": "string",
+      "description": "State name",
+      "required": "true"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country name",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "address1": "Praça  da Sé",
+  "address2": "1 Sé",
+  "city": "São Paulo",
+  "state": "São Paulo - SP",
+  "country": "BRA"
+}</code></pre></div><div class="tab-pane" id="v1_shippingAddress__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record updated successfully",
+  "success": "true"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_shippingAddress__id__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/v1/shippingAddress</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>delete shipping address data for a specific shipping address</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_shippingAddress__id__delete_request" data-toggle="tab">Request</a></li><li><a href="#v1_shippingAddress__id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_shippingAddress__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>58</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_shippingAddress__id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record deleted successfully",
+  "success":"true"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_shopperTypes" class="panel-title">/v1/shopperTypes</h3></div><div class="panel-body"><div class="top-resource-description"><p>shopper types data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_shopperTypes"><span class="parent"></span>/v1/shopperTypes</a> <span class="methods"><a href="#v1_shopperTypes_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_shopperTypes" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_shopperTypes_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>shopper type data for all shopper types</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_shopperTypes_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/v1/shopperTypes</h4></div><div class="modal-body"><div class="alert alert-info"><p>shopper type data for all shopper types</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_shopperTypes_get_request" data-toggle="tab">Request</a></li><li><a href="#v1_shopperTypes_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_shopperTypes_get_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_shopperTypes_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/shopperType/shopperType.schema",
+  "description": "Shopper type details",
+  "properties": {
+    "orders": {
+      "description": "Collection of shopper types data",
+      "type": "array",
+      "items": [
+        {
+          "type": { "$ref": "definitions.json#/shopperType" }
+        }
+      ]
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "shopperTypes ": [
+    {
+      "id": 1,
+      "name": "registered"
+    },
+    {
+      "id": 3,
+      "name": "anonymous"
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_shopperType" class="panel-title">/v1/shopperType</h3></div><div class="panel-body"><div class="top-resource-description"><p>shopper type data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_shopperType"><span class="parent"></span>/v1/shopperType</a> <span class="methods"><a href="#v1_shopperType_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_v1_shopperType" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_shopperType_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>create shopper type</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_shopperType_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/v1/shopperType</h4></div><div class="modal-body"><div class="alert alert-info"><p>create shopper type</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_shopperType_post_request" data-toggle="tab">Request</a></li><li><a href="#v1_shopperType_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_shopperType_post_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/shopperType/shopperTypeCreate.schema",
+  "description": "Shopper type create",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Shopper Type",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "name": "registered"
+}</code></pre></div><div class="tab-pane" id="v1_shopperType_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/successType.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Success code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Success description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 201,
+  "description": "Record saved successfully"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 102,
+  "description": "Record not saved"
+}
+{
+  "code": 103,
+  "description": "Shopper type is already available"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_shopperType__id_"><span class="parent">/v1/shopperType</span>/{id}</a> <span class="methods"><a href="#v1_shopperType__id__get"><span class="badge badge_get">get</span></a> <a href="#v1_shopperType__id__put"><span class="badge badge_put">put</span></a> <a href="#v1_shopperType__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_v1_shopperType__id_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>A specific note, identified by its id</p></div><div class="list-group"><div onclick="window.location.href = '#v1_shopperType__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>shopper type data for a specific shopper type</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#v1_shopperType__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>update shopper type for a specific shopper type</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#v1_shopperType__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>delete shopper type for a specific shopper type</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_shopperType__id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/v1/shopperType</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>shopper type data for a specific shopper type</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_shopperType__id__get_request" data-toggle="tab">Request</a></li><li><a href="#v1_shopperType__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_shopperType__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>8</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_shopperType__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/shopperType/shopperType.schema",
+  "description": "Shopper type details",
+  "properties": {
+    "id": {
+      "type": "int",
+      "description": "Identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Shopper Type"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "shopperType ": {
+    "id": 1,
+    "name": "registered"
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_shopperType__id__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/v1/shopperType</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>update shopper type for a specific shopper type</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_shopperType__id__put_request" data-toggle="tab">Request</a></li><li><a href="#v1_shopperType__id__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_shopperType__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>8</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/shopperType/shopperTypeUpdate.schema",
+  "description": "Shopper type update",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Shopper Type",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "name": "anonymous"
+}</code></pre></div><div class="tab-pane" id="v1_shopperType__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/successType.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Success code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Success description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 202,
+  "description": "Record updated successfully"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}
+{
+  "code": 103,
+  "description": "Shopper type is already available"
+}
+{
+  "code": 103,
+  "description": "Record not updated"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_shopperType__id__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/v1/shopperType</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>delete shopper type for a specific shopper type</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_shopperType__id__delete_request" data-toggle="tab">Request</a></li><li><a href="#v1_shopperType__id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_shopperType__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>8</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_shopperType__id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/successType.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Success code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Success description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 203,
+  "description": "Record deleted successfully"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_crawlFrequencyConfigurations" class="panel-title">/v1/crawlFrequencyConfigurations</h3></div><div class="panel-body"><div class="top-resource-description"><p>crawl frequency configurations data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_crawlFrequencyConfigurations"><span class="parent"></span>/v1/crawlFrequencyConfigurations</a> <span class="methods"><a href="#v1_crawlFrequencyConfigurations_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_crawlFrequencyConfigurations" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_crawlFrequencyConfigurations_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>crawl frequency configuration data for all crawl frequency configurations</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_crawlFrequencyConfigurations_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/v1/crawlFrequencyConfigurations</h4></div><div class="modal-body"><div class="alert alert-info"><p>crawl frequency configuration data for all crawl frequency configurations</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_crawlFrequencyConfigurations_get_request" data-toggle="tab">Request</a></li><li><a href="#v1_crawlFrequencyConfigurations_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_crawlFrequencyConfigurations_get_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_crawlFrequencyConfigurations_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/crawlFrequencyConfiguration/crawlFrequencyConfigurations.schema",
+  "description": "crawl frequency configuration details",
+  "properties": {
+    "orders": {
+      "description": "Collection of crawl frequency configuration data",
+      "type": "array",
+      "items": [
+        {
+          "id": {
+            "type": "int",
+            "description": "Identifier"
+          },
+          "spiderId": {
+            "type": "int",
+            "description": "Spider Identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Crawl frequency configuration Name"
+          },
+          "month": {
+            "type": "string",
+            "description": "Month"
+          },
+          "day": {
+            "type": "string",
+            "description": "Day"
+          },
+          "dayOfMonth": {
+            "type": "string",
+            "description": "Day of Month"
+          },
+          "hour": {
+            "type": "string",
+            "description": "Hour"
+          },
+          "minutes": {
+            "type": "string",
+            "description": "Minutes"
+          },
+          "disabled": {
+            "type": "bool",
+            "description": "Active mode or not"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Priority"
+          },
+          "jobKey": {
+            "type": "string",
+            "description": "Job key"
+          },
+          "createdAt": {
+            "type": "time.Time",
+            "description": "Created Time"
+          },
+          "updatedAt": {
+            "type": "time.Time",
+            "description": "Updated Time"
+          }
+        }
+      ]
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "crawlFrequencyConfigurationList": [
+    {
+      "id": 15,
+      "spiderId": 1,
+      "name": "flipkart",
+      "month": "*",
+      "day": "1",
+      "dayOfMonth": "*",
+      "hour": "12",
+      "minutes": "00",
+      "disabled": true,
+      "priority": 3,
+      "jobKey": "432267",
+      "createdAt": "2016-05-10T14:15:17.17919Z",
+      "updatedAt": "2016-05-10T14:15:17.17919Z"
+    },
+    {
+      "id": 18,
+      "spiderId": 3,
+      "name": "amazon",
+      "month": "*",
+      "day": "*",
+      "dayOfMonth": "*",
+      "hour": "*",
+      "minutes": "*",
+      "disabled": false,
+      "priority": 0,
+      "jobKey": "",
+      "createdAt": "2016-05-23T00:00:00Z",
+      "updatedAt": "2016-05-23T00:00:00Z"
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_crawlFrequencyConfiguration" class="panel-title">/v1/crawlFrequencyConfiguration</h3></div><div class="panel-body"><div class="top-resource-description"><p>crawl frequency configuration data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_crawlFrequencyConfiguration"><span class="parent"></span>/v1/crawlFrequencyConfiguration</a> <span class="methods"><a href="#v1_crawlFrequencyConfiguration_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_v1_crawlFrequencyConfiguration" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_crawlFrequencyConfiguration_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>create crawl frequency configuration</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_crawlFrequencyConfiguration_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/v1/crawlFrequencyConfiguration</h4></div><div class="modal-body"><div class="alert alert-info"><p>create crawl frequency configuration</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_crawlFrequencyConfiguration_post_request" data-toggle="tab">Request</a></li><li><a href="#v1_crawlFrequencyConfiguration_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_crawlFrequencyConfiguration_post_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/crawlFrequencyConfiguration/crawlFrequencyConfigurationCreate.schema",
+  "description": "crawl frequency configuration Create",
+  "properties": {
+    "spiderId": {
+      "type": "int",
+      "description": "Spider Identifier",
+      "required": "true"
+    },
+    "name": {
+      "type": "string",
+      "description": "Crawl frequency configuration Name",
+      "required": "true"
+    },
+    "month": {
+      "type": "string",
+      "description": "Month",
+      "required": "true"
+    },
+    "day": {
+      "type": "string",
+      "description": "Day",
+      "required": "true"
+    },
+    "dayOfMonth": {
+      "type": "string",
+      "description": "Day of Month",
+      "required": "true"
+    },
+    "hour": {
+      "type": "string",
+      "description": "Hour",
+      "required": "true"
+    },
+    "minutes": {
+      "type": "string",
+      "description": "Minutes",
+      "required": "true"
+    },
+    "disabled": {
+      "type": "bool",
+      "description": "Active mode or not",
+      "required": "true"
+    },
+    "priority": {
+      "type": "string",
+      "description": "Priority",
+      "required": "true"
+    },
+    "addtags":  {
+      "type": "Array string",
+      "description": "Tags",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>
+{
+  "spiderId": 5,
+  "name": "flipkart",
+  "month": "10",
+  "day": "*",
+  "dayOfMonth": "*",
+  "hour": "*",
+  "minutes": "*",
+  "disabled": false,
+  "priority": 1,
+  "addtags" :["centauro-product"]
+}</code></pre></div><div class="tab-pane" id="v1_crawlFrequencyConfiguration_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Spider scheduled successfully",
+  "success":"true"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 103,
+  "description": "Error Response"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_crawlFrequencyConfiguration__id_"><span class="parent">/v1/crawlFrequencyConfiguration</span>/{id}</a> <span class="methods"><a href="#v1_crawlFrequencyConfiguration__id__put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_v1_crawlFrequencyConfiguration__id_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>A specific note, identified by its id</p></div><div class="list-group"><div onclick="window.location.href = '#v1_crawlFrequencyConfiguration__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>update crawl frequency configuration for a specific crawl frequency configuration</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_crawlFrequencyConfiguration__id__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/v1/crawlFrequencyConfiguration</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>update crawl frequency configuration for a specific crawl frequency configuration</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_crawlFrequencyConfiguration__id__put_request" data-toggle="tab">Request</a></li><li><a href="#v1_crawlFrequencyConfiguration__id__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_crawlFrequencyConfiguration__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (number)</em><p>The <code>id</code> of the specific note</p><p><strong>Example</strong>:</p><pre><code>105</code></pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/crawlFrequencyConfiguration/crawlFrequencyConfigurationUpdate.schema",
+  "description": "crawl frequency configuration Update",
+  "properties": {
+    "spiderId": {
+      "type": "int",
+      "description": "Spider Identifier",
+      "required": "true"
+    },
+    "name": {
+      "type": "string",
+      "description": "Crawl frequency configuration Name",
+      "required": "true"
+    },
+    "month": {
+      "type": "string",
+      "description": "Month",
+      "required": "true"
+    },
+    "day": {
+      "type": "string",
+      "description": "Day",
+      "required": "true"
+    },
+    "dayOfMonth": {
+      "type": "string",
+      "description": "Day of Month",
+      "required": "true"
+    },
+    "hour": {
+      "type": "string",
+      "description": "Hour",
+      "required": "true"
+    },
+    "minutes": {
+      "type": "string",
+      "description": "Minutes",
+      "required": "true"
+    },
+    "disabled": {
+      "type": "bool",
+      "description": "Active mode or not",
+      "required": "true"
+    },
+    "priority": {
+      "type": "string",
+      "description": "Priority",
+      "required": "true"
+    },
+    "addtags":  {
+      "type": "Array string",
+      "description": "Tags",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>
+{
+  "spiderId": 5,
+  "name": "amazon",
+  "month": "10",
+  "day": "*",
+  "dayOfMonth": "*",
+  "hour": "*",
+  "minutes": "*",
+  "disabled": false,
+  "priority": 1,
+  "addtags" :["centauro-product"]
+}</code></pre></div><div class="tab-pane" id="v1_crawlFrequencyConfiguration__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Spider scheduled successfully",
+  "success":"true"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}
+{
+  "code": 103,
+  "description": "Error Response"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_app" class="panel-title">/v1/app</h3></div><div class="panel-body"><div class="top-resource-description"><p>apps</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_app"><span class="parent"></span>/v1/app</a> <span class="methods"><a href="#v1_app_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_v1_app" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_app_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>create app</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_app_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/v1/app</h4></div><div class="modal-body"><div class="alert alert-info"><p>create app</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_app_post_request" data-toggle="tab">Request</a></li><li><a href="#v1_app_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_app_post_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/apps/app.schema",
+  "description": "Apps",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "App Name",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "name": "dafiti"
+}</code></pre></div><div class="tab-pane" id="v1_app_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record saved successfully",
+  "success": "true"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 102,
+  "description": "Record not saved"
+}
+{
+  "code": 103,
+  "description": "App is already available"
+}
+{
+  "code": 104,
+  "description": "Please enter the required fields"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_app__app_code_"><span class="parent">/v1/app</span>/{app_code}</a> <span class="methods"><a href="#v1_app__app_code__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_v1_app__app_code_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>A specific note, identified by its app code</p></div><div class="list-group"><div onclick="window.location.href = '#v1_app__app_code__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>delete app data for a specific app</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_app__app_code__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/v1/app</span>/{app_code}</h4></div><div class="modal-body"><div class="alert alert-info"><p>delete app data for a specific app</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_app__app_code__delete_request" data-toggle="tab">Request</a></li><li><a href="#v1_app__app_code__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_app__app_code__delete_request"><h3>URI Parameters</h3><ul><li><strong>app_code</strong>: <em>required (string)</em><p>The <code>app code</code> of the specific note</p><p><strong>Example</strong>:</p><pre>mRYpfZ7Wr70wTxxl</pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_app__app_code__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record deleted successfully",
+  "success":"true"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}
+{
+  "code": 107,
+  "description": "Record not deleted"
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_apiKey" class="panel-title">/v1/apiKey</h3></div><div class="panel-body"><div class="top-resource-description"><p>api keys</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_apiKey__app_code_"><span class="parent">/v1/apiKey</span>/{app_code}</a> <span class="methods"><a href="#v1_apiKey__app_code__post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_v1_apiKey__app_code_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>A specific note, identified by its app code</p></div><div class="list-group"><div onclick="window.location.href = '#v1_apiKey__app_code__post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>create api key for a specific app</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_apiKey__app_code__post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/v1/apiKey</span>/{app_code}</h4></div><div class="modal-body"><div class="alert alert-info"><p>create api key for a specific app</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_apiKey__app_code__post_request" data-toggle="tab">Request</a></li><li><a href="#v1_apiKey__app_code__post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_apiKey__app_code__post_request"><h3>URI Parameters</h3><ul><li><strong>app_code</strong>: <em>required (string)</em><p>The <code>app code</code> of the specific note</p><p><strong>Example</strong>:</p><pre>mRYpfZ7Wr70wTxxl</pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_apiKey__app_code__post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record saved successfully",
+  "success": "true"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}
+{
+  "code": 102,
+  "description": "Record not saved"
+}
+
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_apiKey__api_key_"><span class="parent">/v1/apiKey</span>/{api_key}</a> <span class="methods"><a href="#v1_apiKey__api_key__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_v1_apiKey__api_key_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>A specific note, identified by its api key</p></div><div class="list-group"><div onclick="window.location.href = '#v1_apiKey__api_key__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>delete api key for a specific api key</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_apiKey__api_key__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/v1/apiKey</span>/{api_key}</h4></div><div class="modal-body"><div class="alert alert-info"><p>delete api key for a specific api key</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_apiKey__api_key__delete_request" data-toggle="tab">Request</a></li><li><a href="#v1_apiKey__api_key__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_apiKey__api_key__delete_request"><h3>URI Parameters</h3><ul><li><strong>api_key</strong>: <em>required (string)</em><p>The <code>api key</code> of the specific note</p><p><strong>Example</strong>:</p><pre>GovP6doYtLMK1lgoxbfUt9efYvpj53Dr</pre></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul></div><div class="tab-pane" id="v1_apiKey__api_key__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/success.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Record deleted successfully",
+  "success":"true"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_products" class="panel-title">/v1/products</h3></div><div class="panel-body"><div class="top-resource-description"><p>Product data including pricing and shipping data</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_products"><span class="parent"></span>/v1/products</a> <span class="methods"><a href="#v1_products_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_products" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_products_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get product data that matches the query conditions</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_products_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/v1/products</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get product data that matches the query conditions</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_products_get_request" data-toggle="tab">Request</a></li><li><a href="#v1_products_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_products_get_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>retailerId</strong>: <em>(string)</em><p>retailer Identifier</p></li><li><strong>status</strong>: <em>(string)</em><p>product availability status - available/sold out</p></li><li><strong>retailerProductConfigurations</strong>: <em>(string)</em><p>comma separated list of retailerProductConfiguration identifiers</p></li><li><strong>productName</strong>: <em>(string)</em><p>to be matched partially or wholly against product names</p></li><li><strong>brand</strong>: <em>(string)</em><p>to be matched partially or wholly against brand</p></li><li><strong>model</strong>: <em>(string)</em><p>to be matched partially or wholly against model</p></li><li><strong>modelNumber</strong>: <em>(string)</em><p>to be matched partially or wholly against model numbers</p></li><li><strong>category</strong>: <em>(string)</em><p>to be matched partially or wholly against category</p></li><li><strong>gender</strong>: <em>(string)</em><p>gender - M/F/U</p></li><li><strong>color</strong>: <em>(string)</em><p>comma separated list of colors</p></li><li><strong>shippingZipcode</strong>: <em>(string)</em><p>comma separate list</p></li><li><strong>shippingCity</strong>: <em>(string)</em><p>comma separate list</p></li><li><strong>shopperType</strong>: <em>(string)</em><p>comma separate list</p></li><li><strong>snapshotView</strong>: <em>(boolean - default: true)</em><p>Whether the latest snapshot data needs to be returned, or if data corresponding to a date range is to be returned. If this flag is TRUE, then startDate and endDate are irrelevant in the query parameter set.</p></li><li><strong>startDate</strong>: <em>(string)</em><p>Start datetime for the date range for querying in format YYYYMMDD</p></li><li><strong>endDate</strong>: <em>(string)</em><p>End datetime for the date range for querying in format YYYYMMDD</p></li><li><strong>sortKey1</strong>: <em>(string - default: date)</em><p>Primary field by which to sort the results</p><p><strong>Example</strong>:</p><pre>retailerProductConfigurations, productName,brand, modelNumber, category, gender, color, shippingZipcode, shippingCity, shippingFee, skuCode, date, shopperType</pre></li><li><strong>sortKey2</strong>: <em>(string)</em><p>Secondary field by which to sort the results</p><p><strong>Example</strong>:</p><pre>retailerProductConfigurations, productName,brand, modelNumber, category, gender, color, shippingZipcode, shippingCity, shippingFee, skuCode, date, shopperType</pre></li><li><strong>sortOrder</strong>: <em>(string - default: asc)</em><p>Sorting order - value can be asc or desc</p></li><li><strong>skuCode</strong>: <em>(string)</em><p>comma separate list</p></li><li><strong>referenceCode</strong>: <em>(string)</em><p>comma separate list</p></li></ul></div><div class="tab-pane" id="v1_products_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code> {
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/products/products.schema",
+  "description": "Schema for product collection",
+  "properties": {
+  "orders": {
+              "description": "Collection of product data",
+              "type": "array",
+              "items": {
+                "type": { "$ref": "definitions.json#/product" }
+              }
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "products": [
+     {
+      "retailerProductConfigurationId": "3828",
+      "date": "20160610",
+      "dayOfTheWeek": "Fri",
+      "retailerId": "20",
+      "retailerName": "marisa",
+      "brand": "Marisa",
+      "category": "Meia",
+      "modelNumber": "165431",
+      "productCode": "",
+      "skuCode": "WK2Q16NIM4",
+      "productName": "Kit com 3 pares de meia masculina social",
+      "productDescription": "Kit com 3 pares de meia masculina socialKit com 3 pares de meia masculina social confeccionada em poliéster e elastano, acabamento e costura no tom.",
+      "barcode": "",
+      "color": "CINZA",
+      "status": "available",
+      "size": "",
+      "gender": "",
+      "noOfGears": 0,
+      "suspension": "",
+      "imageUrlThumbnail": "http://images.marisa.com.br/708888pv.jpg",
+      "imageUrlPreview": "http://images.marisa.com.br/708888p.jpg",
+      "shopperType": "anonymous",
+      "currency": "BRL",
+      "originalPrice": 13.99,
+      "salePrice": 13.99,
+      "shippingZipcode": "01001000",
+      "shippingCity": "São Paulo",
+      "shippingCountry": "BRA",
+      "shippingOption": "Entrega Econômica",
+      "shippingOptionStandardized": "normal",
+      "shippingFee": 5.8,
+      "shippingETA": ""
+    },
+    {
+      "retailerProductConfigurationId": "3828",
+      "date": "20160610",
+      "dayOfTheWeek": "Fri",
+      "retailerId": "20",
+      "retailerName": "marisa",
+      "brand": "Marisa",
+      "category": "Meia",
+      "modelNumber": "165431",
+      "productCode": "",
+      "skuCode": "WK2Q16NIM4",
+      "productName": "Kit com 3 pares de meia masculina social",
+      "productDescription": "Kit com 3 pares de meia masculina socialKit com 3 pares de meia masculina social confeccionada em poliéster e elastano, acabamento e costura no tom.",
+      "barcode": "",
+      "color": "CINZA",
+      "status": "sold out",
+      "size": "",
+      "gender": "",
+      "noOfGears": 0,
+      "suspension": "",
+      "imageUrlThumbnail": "http://images.marisa.com.br/708888pv.jpg",
+      "imageUrlPreview": "http://images.marisa.com.br/708888p.jpg",
+      "shopperType": "anonymous",
+      "currency": "BRL",
+      "originalPrice": 13.99,
+      "salePrice": 13.99,
+      "shippingZipcode": "01001000",
+      "shippingCity": "São Paulo",
+      "shippingCountry": "BRA",
+      "shippingOption": "Entrega Expressa",
+      "shippingOptionStandardized": "express",
+      "shippingFee": 8.8,
+      "shippingETA": ""
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_bulkUpload" class="panel-title">/v1/bulkUpload</h3></div><div class="panel-body"><div class="top-resource-description"><p>upload csv files</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_bulkUpload"><span class="parent"></span>/v1/bulkUpload</a> <span class="methods"><a href="#v1_bulkUpload_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_v1_bulkUpload" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_bulkUpload_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>create upload csv file information</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_bulkUpload_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/v1/bulkUpload</h4></div><div class="modal-body"><div class="alert alert-info"><p>create upload csv file information</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_bulkUpload_post_request" data-toggle="tab">Request</a></li><li><a href="#v1_bulkUpload_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_bulkUpload_post_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/bulkUpload.schema",
+  "description": "Schema for bulk upload create",
+  "properties": {
+    "file": {
+      "type": "file",
+      "description": "upload csv file",
+      "required": "true"
+    },
+    "retailerId": {
+      "type": "int",
+      "description": "Retailer Identifier",
+      "required": "true"
+    },
+    "uploadType": {
+      "type": "string",
+      "description": "Upload type",
+      "required": "true"
+    },
+    "competitorRetailerId": {
+      "type": "int",
+      "description": "competitor retailer id its required only on catalog mapping file upload time",
+      "required": "true"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "file": "filename.csv" # upload csv
+  "retailerId": 10,
+  "uploadType": "priceComparison" or "catalogMapping" or "priceUpload" or
+  "crawlUpload" or "shippingAddressUpload",
+  "competitorRetailerId": 12 # only for catalogMapping
+}</code></pre></div><div class="tab-pane" id="v1_bulkUpload_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/bulkUploadSuccess.schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "success type"
+    },
+    "success": {
+      "type": "string",
+      "description": "Status"
+    },
+    "uploadInfo": {
+      "type": "object",
+      "description": "upload file information",
+      "items": {
+        "id": {
+          "type": "int",
+          "description": "Identifier"
+        },
+        "fileName": {
+          "type": "string",
+          "description": "file name"
+        },
+        "retailerId": {
+          "type": "int",
+          "description": "retailer Id"
+        },
+        "competitorRetailerId": {
+          "type": "int",
+          "description": "competitor retailer Id"
+        },
+        "uploadType": {
+          "type": "string",
+          "description": "upload file type"
+        },
+        "status": {
+          "type": "string",
+          "description": "upload file status"
+        }
+      }
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "message": "Your upload is initiated in API, ETL is inprogress",
+  "success": "true",
+  "uploadInfo": {
+    "id": 67,
+    "fileName": "20161011075653557118_testingcrawlUrls1_-_Sheet1.csv",
+    "retailerId": 20,
+    "competitorRetailerId": 0,
+    "uploadType": "crawlUpload",
+    "status": "started"
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 102,
+  "description": "Record not saved"
+}
+{
+  "code": 104,
+  "description": "please upload the CSV file"
+}
+{
+  "code": 103,
+  "description": "uploadType is not recogonized"
+}
+{
+  "code": 106,
+  "description": "retailerId is not recognized"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_bulkUploadSummary" class="panel-title">/v1/bulkUploadSummary</h3></div><div class="panel-body"><div class="top-resource-description"><p>summary details</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_bulkUploadSummary__id_"><span class="parent">/v1/bulkUploadSummary</span>/{id}</a> <span class="methods"><a href="#v1_bulkUploadSummary__id__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_bulkUploadSummary__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_bulkUploadSummary__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the summary details for the Upload_id(id)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_bulkUploadSummary__id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/v1/bulkUploadSummary</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the summary details for the Upload_id(id)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_bulkUploadSummary__id__get_request" data-toggle="tab">Request</a></li><li><a href="#v1_bulkUploadSummary__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_bulkUploadSummary__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>id</strong>: <em>(string)</em><p>upload Identifier</p></li></ul></div><div class="tab-pane" id="v1_bulkUploadSummary__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/summary/summary.schema",
+  "description": "Bulk upload file summary details",
+  "properties": {
+    "uploadId": {
+      "type": "int",
+      "description": "Identifier"
+    },
+    "newEntries": {
+      "type": "int",
+      "description": "count for new entry records"
+    },
+    "modifiedEntries": {
+      "type": "int",
+      "description": "count for modified entry records"
+    },
+    "existingEntriesWithNoUpdate": {
+      "type": "int",
+      "description": "count for existing records with no modified"
+    },
+    "errorEntries": {
+      "type": "int",
+      "description": "count for error records"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "summary": {
+    "uploadId": 46,
+    "newEntries": 2,
+    "modifiedEntries": 1,
+    "existingEntriesWithNoUpdate": 1,
+    "errorEntries": null
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_bulkUploadSummary__uploadType_"><span class="parent">/v1/bulkUploadSummary</span>/{uploadType}</a> <span class="methods"><a href="#v1_bulkUploadSummary__uploadType__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_bulkUploadSummary__uploadType_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_bulkUploadSummary__uploadType__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the summary details for the last job of the UploadType sent as parameter.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_bulkUploadSummary__uploadType__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/v1/bulkUploadSummary</span>/{uploadType}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the summary details for the last job of the UploadType sent as parameter.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_bulkUploadSummary__uploadType__get_request" data-toggle="tab">Request</a></li><li><a href="#v1_bulkUploadSummary__uploadType__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_bulkUploadSummary__uploadType__get_request"><h3>URI Parameters</h3><ul><li><strong>uploadType</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>uploadType</strong>: <em>(string)</em><p>upload type - sort the latest summary details</p></li></ul></div><div class="tab-pane" id="v1_bulkUploadSummary__uploadType__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/summary/summary.schema",
+  "description": "Bulk upload file summary details",
+  "properties": {
+    "uploadId": {
+      "type": "int",
+      "description": "Identifier"
+    },
+    "newEntries": {
+      "type": "int",
+      "description": "count for new entry records"
+    },
+    "modifiedEntries": {
+      "type": "int",
+      "description": "count for modified entry records"
+    },
+    "existingEntriesWithNoUpdate": {
+      "type": "int",
+      "description": "count for existing records with no modified"
+    },
+    "errorEntries": {
+      "type": "int",
+      "description": "count for error records"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "summary": {
+    "uploadId": 46,
+    "newEntries": 2,
+    "modifiedEntries": 1,
+    "existingEntriesWithNoUpdate": 1,
+    "errorEntries": null
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="v1_priceComparison" class="panel-title">/v1/priceComparison</h3></div><div class="panel-body"><div class="top-resource-description"><p>price comparison against retailers</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_v1_priceComparison"><span class="parent"></span>/v1/priceComparison</a> <span class="methods"><a href="#v1_priceComparison_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_v1_priceComparison" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#v1_priceComparison_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>get the price comparison summary details that matches the query conditions</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="v1_priceComparison_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/v1/priceComparison</h4></div><div class="modal-body"><div class="alert alert-info"><p>get the price comparison summary details that matches the query conditions</p></div><ul class="nav nav-tabs"><li class="active"><a href="#v1_priceComparison_get_request" data-toggle="tab">Request</a></li><li><a href="#v1_priceComparison_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="v1_priceComparison_get_request"><h3>Headers</h3><ul><li><strong>App-Id</strong>: <em>required (string)</em><p>Authentication Code</p><p><strong>Example</strong>:</p><pre>lcJ6wXeUQTi9iclkj</pre></li><li><strong>Api-Key</strong>: <em>required (string)</em><p>Authentication Key</p><p><strong>Example</strong>:</p><pre>3QNcAZAwQF2EtPfoKlTlYk2pFzvZrmnb</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>retailerId</strong>: <em>required (string)</em><p>retailer identifier</p></li><li><strong>startDate</strong>: <em>(string)</em><p>Start datetime for the date range for querying in format YYYYMMDD</p></li><li><strong>endDate</strong>: <em>(string)</em><p>End datetime for the date range for querying in format YYYYMMDD</p></li><li><strong>date</strong>: <em>(string)</em><p>datetime for querying in format YYYYMMDD</p></li><li><strong>brand</strong>: <em>(string)</em><p>to be matched partially or wholly against brand</p></li><li><strong>category</strong>: <em>(string)</em><p>to be matched partially or wholly against category</p></li><li><strong>gender</strong>: <em>(string)</em><p>gender - M/F/U</p></li><li><strong>competitorRetailerId</strong>: <em>required (string)</em><p>comma separate competitor ratailers list</p></li></ul></div><div class="tab-pane" id="v1_priceComparison_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/products/priceComparison.schema",
+  "description": "Price comparison against retailers",
+  "properties": {
+    "retailerProducts":{
+      "type": "object",
+      "item": {
+        "referenceCode":{
+          "type": "map",
+          "item": {
+            "importedDate": {
+              "type": "map",
+              "items": {
+                "retailerName":{
+                  "type": "array",
+                  "items": {
+                    "retailerProductConfigurationId": {
+                      "type": "string",
+                      "description": "retailer product configuration id"
+                    },
+                    "date": {
+                      "type": "string",
+                      "description": "imported date"
+                    },
+                    "dayOfTheWeek": {
+                      "type": "string",
+                      "description": "day of the week"
+                    },
+                    "retailerId": {
+                      "type": "string",
+                      "description": "retailer id"
+                    },
+                    "retailerName": {
+                      "type": "string",
+                      "description": "retailer name"
+                    },
+                    "brand": {
+                      "type": "string",
+                      "description": "brand name"
+                    },
+                    "category": {
+                      "type": "string",
+                      "description": "category"
+                    },
+                    "modelNumber": {
+                      "type": "string",
+                      "description": "model number"
+                    },
+                    "productCode": {
+                      "type": "string",
+                      "description": "product code"
+                    },
+                    "skuCode": {
+                      "type": "string",
+                      "description": "sku code"
+                    },
+                    "referenceCode": {
+                      "type": "string",
+                      "description": "reference code"
+                    },
+                    "productName": {
+                      "type": "string",
+                      "description": "product name"
+                    },
+                    "productDescription": {
+                      "type": "string",
+                      "description": "product description"
+                    },
+                    "barcode": {
+                      "type": "string",
+                      "description": "barcode"
+                    },
+                    "color": {
+                      "type": "string",
+                      "description": "product color"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "status"
+                    },
+                    "size": {
+                      "type": "string",
+                      "description": "size"
+                    },
+                    "gender": {
+                      "type": "string",
+                      "description": "gender"
+                    },
+                    "noOfGears": {
+                      "type": "string",
+                      "description": "number of gears"
+                    },
+                    "suspension": {
+                      "type": "string",
+                      "description": "suspension"
+                    },
+                    "imageUrlThumbnail": {
+                      "type": "string",
+                      "description": "image url thumbnail"
+                    },
+                    "imageUrlPreview": {
+                      "type": "string",
+                      "description": "image url preview"
+                    },
+                    "shopperType": {
+                      "type": "string",
+                      "description": "shopper type"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "description": "currency"
+                    },
+                    "originalPrice": {
+                      "type": "float",
+                      "description": "original price"
+                    },
+                    "salePrice": {
+                      "type": "float",
+                      "description": "selling price"
+                    },
+                    "shippingZipcode": {
+                      "type": "string",
+                      "description": "shipping zipcode"
+                    },
+                    "shippingCity": {
+                      "type": "string",
+                      "description": "shipping city"
+                    },
+                    "shippingCountry": {
+                      "type": "string",
+                      "description": "shipping country"
+                    },
+                    "shippingOption": {
+                      "type": "string",
+                      "description": "shipping option type"
+                    },
+                    "shippingOptionStandardized": {
+                      "type": "string",
+                      "description": "shipping option stardardized"
+                    },
+                    "shippingFee": {
+                      "type": "float",
+                      "description": "shipping fee"
+                    },
+                    "shippingETA": {
+                      "type": "string",
+                      "description": "shipping ETA"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "retailerProducts": {
+    "products": {
+      "G1": {
+        "20161021": {
+          "centauro": [
+            {
+              "retailerProductConfigurationId": "13",
+              "date": "20161021",
+              "dayOfTheWeek": "Fri",
+              "retailerId": "12",
+              "retailerName": "centauro",
+              "brand": "Mizuno",
+              "category": "Running shoes",
+              "modelNumber": "",
+              "productCode": "",
+              "skuCode": "CN-876560",
+              "referenceCode": "G1",
+              "productName": "CN - Tenis Mizuno Wave Creation 17 Golden run masculino",
+              "productDescription": "",
+              "barcode": "",
+              "color": "Dourado+Preto",
+              "status": "",
+              "size": "",
+              "gender": "Male",
+              "noOfGears": "",
+              "suspension": "",
+              "imageUrlThumbnail": "",
+              "imageUrlPreview": "",
+              "shopperType": "",
+              "currency": "BRL",
+              "originalPrice": 859.99,
+              "salePrice": 800,
+              "shippingZipcode": "01001000",
+              "shippingCity": "São Paulo",
+              "shippingCountry": "BRA",
+              "shippingOption": "Expressa",
+              "shippingOptionStandardized": "express",
+              "shippingFee": 29.8,
+              "shippingETA": "9 to 12 days"
+            }
+          ],
+          "netshoes": [
+            {
+              "retailerProductConfigurationId": "15",
+              "date": "20161021",
+              "dayOfTheWeek": "Fri",
+              "retailerId": "28",
+              "retailerName": "netshoes",
+              "brand": "Mizuno",
+              "category": "Running shoes",
+              "modelNumber": "",
+              "productCode": "",
+              "skuCode": "D16-0447-284",
+              "referenceCode": "G1",
+              "productName": "NS - Tenis Mizuno Wave Creation 17 Golden Runners",
+              "productDescription": "",
+              "barcode": "",
+              "color": "Dourado+Preto",
+              "status": "",
+              "size": "",
+              "gender": "Male",
+              "noOfGears": "",
+              "suspension": "",
+              "imageUrlThumbnail": "",
+              "imageUrlPreview": "",
+              "shopperType": "",
+              "currency": "BRL",
+              "originalPrice": 849.99,
+              "salePrice": 400,
+              "shippingZipcode": "",
+              "shippingCity": "",
+              "shippingCountry": "",
+              "shippingOption": "",
+              "shippingOptionStandardized": "",
+              "shippingFee": 0,
+              "shippingETA": ""
+            }
+          ]
+        },
+        "20161024": {
+          "centauro": [
+            {
+              "retailerProductConfigurationId": "13",
+              "date": "20161024",
+              "dayOfTheWeek": "Mon",
+              "retailerId": "12",
+              "retailerName": "centauro",
+              "brand": "Mizuno",
+              "category": "Running shoes",
+              "modelNumber": "",
+              "productCode": "",
+              "skuCode": "CN-876560",
+              "referenceCode": "G1",
+              "productName": "CN - Tenis Mizuno Wave Creation 17 Golden run masculino",
+              "productDescription": "",
+              "barcode": "",
+              "color": "Dourado+Preto",
+              "status": "",
+              "size": "",
+              "gender": "Male",
+              "noOfGears": "",
+              "suspension": "",
+              "imageUrlThumbnail": "",
+              "imageUrlPreview": "",
+              "shopperType": "",
+              "currency": "BRL",
+              "originalPrice": 0,
+              "salePrice": 0,
+              "shippingZipcode": "40020030",
+              "shippingCity": "Salvador",
+              "shippingCountry": "BRA",
+              "shippingOption": "Normal",
+              "shippingOptionStandardized": "normal",
+              "shippingFee": 16.7,
+              "shippingETA": "13 to 14 days"
+            },
+            {
+              "retailerProductConfigurationId": "13",
+              "date": "20161024",
+              "dayOfTheWeek": "Mon",
+              "retailerId": "12",
+              "retailerName": "centauro",
+              "brand": "Mizuno",
+              "category": "Running shoes",
+              "modelNumber": "",
+              "productCode": "",
+              "skuCode": "CN-876560",
+              "referenceCode": "G1",
+              "productName": "CN - Tenis Mizuno Wave Creation 17 Golden run masculino",
+              "productDescription": "",
+              "barcode": "",
+              "color": "Dourado+Preto",
+              "status": "",
+              "size": "",
+              "gender": "Male",
+              "noOfGears": "",
+              "suspension": "",
+              "imageUrlThumbnail": "",
+              "imageUrlPreview": "",
+              "shopperType": "",
+              "currency": "BRL",
+              "originalPrice": 0,
+              "salePrice": 0,
+              "shippingZipcode": "01001000",
+              "shippingCity": "São Paulo",
+              "shippingCountry": "BRA",
+              "shippingOption": "Expressa",
+              "shippingOptionStandardized": "express",
+              "shippingFee": 29.8,
+              "shippingETA": "9 to 12 days"
+            }
+          ]
+        }
+      },
+      "G2": {
+        "20161021": {
+          "centauro": [
+            {
+              "retailerProductConfigurationId": "14",
+              "date": "20161021",
+              "dayOfTheWeek": "Fri",
+              "retailerId": "12",
+              "retailerName": "centauro",
+              "brand": "Mizuno",
+              "category": "Running shoes",
+              "modelNumber": "",
+              "productCode": "",
+              "skuCode": "CN-856058",
+              "referenceCode": "G2",
+              "productName": "CN - TÊNIS MIZUNO WAVE ULTIMA 7 -masculino",
+              "productDescription": "",
+              "barcode": "",
+              "color": "Verde claro",
+              "status": "",
+              "size": "",
+              "gender": "Male",
+              "noOfGears": "",
+              "suspension": "",
+              "imageUrlThumbnail": "",
+              "imageUrlPreview": "",
+              "shopperType": "",
+              "currency": "BRL",
+              "originalPrice": 249.99,
+              "salePrice": 300,
+              "shippingZipcode": "01001000",
+              "shippingCity": "São Paulo",
+              "shippingCountry": "BRA",
+              "shippingOption": "Expressa",
+              "shippingOptionStandardized": "express",
+              "shippingFee": 29.8,
+              "shippingETA": "9 to 12 days"
+            }
+          ],
+          "netshoes": [
+            {
+              "retailerProductConfigurationId": "16",
+              "date": "20161021",
+              "dayOfTheWeek": "Fri",
+              "retailerId": "28",
+              "retailerName": "netshoes",
+              "brand": "Mizuno",
+              "category": "Running shoes",
+              "modelNumber": "",
+              "productCode": "",
+              "skuCode": "D16-0208-060",
+              "referenceCode": "G2",
+              "productName": "NS - TÊNIS MIZUNO WAVE ULTIMA 7",
+              "productDescription": "",
+              "barcode": "",
+              "color": "Verde claro",
+              "status": "",
+              "size": "",
+              "gender": "Male",
+              "noOfGears": "",
+              "suspension": "",
+              "imageUrlThumbnail": "",
+              "imageUrlPreview": "",
+              "shopperType": "",
+              "currency": "BRL",
+              "originalPrice": 299.99,
+              "salePrice": 200,
+              "shippingZipcode": "",
+              "shippingCity": "",
+              "shippingCountry": "",
+              "shippingOption": "",
+              "shippingOptionStandardized": "",
+              "shippingFee": 0,
+              "shippingETA": ""
+            }
+          ]
+        }
+      }
+    }
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "/RetailDashAPI/Retaildashraml/schemas/error.schema",
+  "properties": {
+   "code": {
+      "type": "integer",
+      "description": "Error code"
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "code": 101,
+  "description": "No record found"
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#v1_retailerShippingOptions">/v1/retailerShippingOptions</a></li><li><a href="#v1_retailerShippingOption">/v1/retailerShippingOption</a></li><li><a href="#v1_retaildashShippingOptions">/v1/retaildashShippingOptions</a></li><li><a href="#v1_retaildashShippingOption">/v1/retaildashShippingOption</a></li><li><a href="#v1_retailerProductConfigurations">/v1/retailerProductConfigurations</a></li><li><a href="#v1_retailerProductConfiguration">/v1/retailerProductConfiguration</a></li><li><a href="#v1_retailers">/v1/retailers</a></li><li><a href="#v1_retailer">/v1/retailer</a></li><li><a href="#v1_shippingAddresses">/v1/shippingAddresses</a></li><li><a href="#v1_shippingAddress">/v1/shippingAddress</a></li><li><a href="#v1_shopperTypes">/v1/shopperTypes</a></li><li><a href="#v1_shopperType">/v1/shopperType</a></li><li><a href="#v1_crawlFrequencyConfigurations">/v1/crawlFrequencyConfigurations</a></li><li><a href="#v1_crawlFrequencyConfiguration">/v1/crawlFrequencyConfiguration</a></li><li><a href="#v1_app">/v1/app</a></li><li><a href="#v1_apiKey">/v1/apiKey</a></li><li><a href="#v1_products">/v1/products</a></li><li><a href="#v1_bulkUpload">/v1/bulkUpload</a></li><li><a href="#v1_bulkUploadSummary">/v1/bulkUploadSummary</a></li><li><a href="#v1_priceComparison">/v1/priceComparison</a></li></ul></div></div></div></div></body></html>
