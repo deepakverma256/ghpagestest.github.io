@@ -91,7 +91,7 @@ a {
   text-shadow: none;
 }
 
-a:hover, a:focus {border-bottom: 1px solid #0090ff;}
+a:hover, a:focus {border-bottom: 1px solid #F7941E;}
 
 
 em {
@@ -251,7 +251,7 @@ Full-Width Styles
 }
 
 #forkme_banner:hover {
-  background-color: #1883ed;
+  background-color: #F7941E;
 }
 
 header {
